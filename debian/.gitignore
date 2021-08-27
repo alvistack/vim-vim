@@ -1,0 +1,8 @@
+*.substvars
+*debhelper*
+.debhelper
+files
+tmp/
+vim-*/
+vim/
+xxd/
