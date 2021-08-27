@@ -1,0 +1,6 @@
+vim-runtime: copyright-without-copyright-notice
+vim-runtime: initial-upload-closes-no-bugs
+vim-runtime: national-encoding
+vim-runtime: no-manual-page
+vim-runtime: python3-script-but-no-python3-dep
+vim-runtime: zero-byte-file-in-doc-directory
