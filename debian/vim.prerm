@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+update-alternatives \
+    --remove vim /usr/bin/vim.basic
+update-alternatives \
+    --remove editor /usr/bin/vim.basic
+update-alternatives \
+    --remove ex /usr/bin/vim.basic
+update-alternatives \
+    --remove vi /usr/bin/vim.basic
+update-alternatives \
+    --remove view /usr/bin/vim.basic
+
+#DEBHELPER#
+
+exit 0
