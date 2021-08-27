@@ -1,0 +1,5 @@
+vim source: no-debian-changes
+vim source: not-binnmuable-any-depends-any
+vim source: python3-depends-but-no-python3-helper
+vim source: source-contains-prebuilt-windows-binary
+vim source: version-substvar-for-external-package
