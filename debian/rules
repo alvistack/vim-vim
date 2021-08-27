@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+SEHLL := /bin/bash
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--disable-pythoninterp \
+		--disable-perlinterp \
+		--disable-python3interp \
+		--with-global-runtime=/usr/share/vim/addons,/etc/vim,$$VIM/vimfiles \
+		--without-local-dir
+
+override_dh_auto_install:
+	mkdir -p debian/tmp/usr/bin
+	mkdir -p debian/tmp/usr/share/vim/vimfiles/{after,autoload,colors,compiler,doc,ftdetect,ftplugin,indent,keymap,lang,plugin,print,spell,syntax,tutor}
+	mkdir -p debian/tmp/usr/share/vim/vimfiles/after/{autoload,colors,compiler,doc,ftdetect,ftplugin,indent,keymap,lang,plugin,print,spell,syntax,tutor}
+	dh_auto_install --destdir=debian/tmp
+	mv debian/tmp/usr/bin/vim debian/tmp/usr/bin/vim.tiny
+	ln -fs /usr/bin/vim.tiny debian/tmp/usr/bin/vim.basic
+	install -Dpm644 -t debian/tmp/usr/share/vim vimrc
+	rm -rf debian/tmp/usr/bin/{vi,view,ex,editor}
+	rm -rf debian/tmp/usr/share/man
+	rm -rf debian/tmp/usr/share/applications/gvim.desktop
+	rm -rf debian/tmp/usr/share/vim/vim82/doc
+	rm -rf debian/tmp/usr/share/vim/vim82/lang
+	rm -rf debian/tmp/usr/share/vim/vim82/tools/vim132
+	sed -i 's,^#!/usr/bin/python,#!/usr/bin/python3,g' debian/tmp/usr/share/vim/vim82/tools/demoserver.py
+	sed -i 's,^#!/usr/bin/nawk,#!/usr/bin/awk,g' debian/tmp/usr/share/vim/vim82/tools/mve.awk
+	sed -i 's,^#!/usr/bin/env perl,#!/usr/bin/perl,g' debian/tmp/usr/share/vim/vim82/tools/pltags.pl
+	sed -i 's,^#!/usr/bin/env perl,#!/usr/bin/perl,g' debian/tmp/usr/share/vim/vim82/tools/shtags.pl
+	sed -i 's,^#!/usr/bin/env perl,#!/usr/bin/perl,g' debian/tmp/usr/share/vim/vim82/tools/efm_filter.pl
+	ln -fs /etc/alternatives/vi debian/tmp/usr/bin/vi
+	ln -fs /etc/alternatives/vim debian/tmp/usr/bin/vim
+	ln -fs /etc/alternatives/view debian/tmp/usr/bin/view
+	ln -fs /etc/alternatives/ex debian/tmp/usr/bin/ex
+	ln -fs /etc/alternatives/editor debian/tmp/usr/bin/editor
+	fdupes -s debian/tmp/usr
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+
+%:
+	dh $@ --buildsystem=autoconf
