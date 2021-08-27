@@ -1,0 +1,5 @@
+xxd: copyright-without-copyright-notice
+xxd: initial-upload-closes-no-bugs
+xxd: no-manual-page usr/bin/xxd
+xxd: undeclared-elf-prerequisites
+xxd: zero-byte-file-in-doc-directory
