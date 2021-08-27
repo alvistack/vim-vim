@@ -1,0 +1,179 @@
+Source: vim
+Section: editors
+Priority: optional
+Standards-Version: 4.5.0
+Maintainer: Wong Hoi Sing Edison <hswong3i@gmail.com>
+Homepage: https://github.com/vim/vim/tags
+Vcs-Browser: https://github.com/alvistack/vim-vim
+Vcs-Git: https://github.com/alvistack/vim-vim.git
+Build-Depends:
+ autoconf,
+ automake,
+ cscope,
+ debhelper,
+ debhelper-compat (= 10),
+ docbook-utils,
+ docbook-xml,
+ ghostscript,
+ libacl1-dev,
+ libcanberra-dev,
+ libfreetype6-dev,
+ libgpmg1-dev,
+ libjpeg-dev,
+ liblua5.2-dev,
+ libmotif-dev,
+ libncurses-dev,
+ libperl-dev,
+ libselinux1-dev,
+ libsodium-dev,
+ libxt-dev,
+ lua5.2,
+ lynx,
+ pdf2svg,
+ pkg-config,
+ procps,
+ python3-dev,
+ ruby,
+ ruby-dev,
+ tcl-dev,
+
+Package: vim-common
+Priority: important
+Architecture: all
+Description: Vi IMproved - Common files
+ This package contains files shared by all non GUI-enabled vim variants
+ available in Debian. Examples of such shared files are: manpages and
+ configuration files.
+Depends:
+ ${misc:Depends},
+ xxd,
+Recommends:
+ vim | vim-motif | vim-nox | vim-tiny,
+
+Package: vim-gui-common
+Architecture: all
+Description: Vi IMproved - Common GUI files
+ This package contains files shared by all GUI-enabled vim variants
+ available in Debian. Examples of such shared files are: gvimtutor,
+ icons, and desktop environments settings.
+Depends:
+ ${misc:Depends},
+Recommends:
+ vim-motif,
+
+Package: vim-runtime
+Architecture: all
+Description: Vi IMproved - Runtime files
+ This package contains vimtutor and the architecture independent runtime
+ files, used, if available, by all vim variants available in Debian.
+ Example of such runtime files are: online documentation, rules for
+ language-specific syntax highlighting and indentation, color schemes,
+ and standard plugins.
+Depends:
+ ${misc:Depends},
+Breaks:
+ vim-tiny (<< ${source:Version}),
+Recommends:
+ vim | vim-motif | vim-nox | vim-tiny,
+Enhances:
+ vim-tiny,
+
+Package: vim-tiny
+Priority: important
+Architecture: amd64
+Description: Vi IMproved - enhanced vi editor - compact version
+ This package contains a minimal version of Vim compiled with no GUI and
+ a small subset of features. This package's sole purpose is to provide
+ the vi binary for base installations.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-common (= ${source:Version}),
+Suggests:
+ indent,
+Provides:
+ editor,
+
+Package: vim
+Architecture: amd64
+Description: Vi IMproved - enhanced vi editor
+ This package contains a version of vim compiled with a rather standard
+ set of features. This package does not provide a GUI version of Vim. See
+ the other vim-* packages if you need more (or less).
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-common (= ${source:Version}),
+ vim-runtime (= ${source:Version}),
+Suggests:
+ ctags,
+ vim-scripts,
+Provides:
+ editor,
+
+Package: vim-nox
+Architecture: amd64
+Description: Vi IMproved - enhanced vi editor - with scripting languages support
+ This package contains a version of vim compiled with support for
+ scripting with Lua, Perl, Python 3, ${vim:Ruby-Desc} and Tcl but no GUI.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-common (= ${source:Version}),
+ vim-runtime (= ${source:Version}),
+Suggests:
+ cscope,
+Provides:
+ ${vim:Ruby-Provides},
+ editor,
+ vim (= ${source:Version}),
+ vim-lua (= ${source:Version}),
+ vim-perl (= ${source:Version}),
+ vim-python3 (= ${source:Version}),
+ vim-tcl (= ${source:Version}),
+
+Package: vim-motif
+Architecture: amd64
+Description: Vi IMproved - enhanced vi editor - with Motif GUI
+ This package contains a version of vim compiled with a Motif GUI and
+ support for scripting with Lua, Perl, Python 3, ${vim-Ruby-Desc} and Tcl.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-common (= ${source:Version}),
+ vim-gui-common (= ${source:Version}),
+ vim-runtime (= ${source:Version}),
+Suggests:
+ cscope,
+Provides:
+ ${vim:Ruby-Provides},
+ editor,
+ gvim (= ${source:Version}),
+ vim (= ${source:Version}),
+ vim-lua (= ${source:Version}),
+ vim-perl (= ${source:Version}),
+ vim-python3 (= ${source:Version}),
+ vim-tcl (= ${source:Version}),
+
+Package: vim-athena
+Section: oldlibs
+Architecture: all
+Description: Vi IMproved - enhanced vi editor (dummy package)
+ This is a transitional package to install the vim-motif package. You may
+ remove this package if nothing depends on it.
+Depends:
+ vim-motif,
+ ${misc:Depends},
+
+Package: xxd
+Architecture: amd64
+Description: tool to make (or reverse) a hex dump
+ xxd creates a hex dump of a given file or standard input. It can also
+ convert a hex dump back to its original binary form.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Breaks:
+ vim-common (<< ${source:Version}),
+Replaces:
+ vim-common (<< ${source:Version}),

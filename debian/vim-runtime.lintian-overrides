@@ -1,0 +1,4 @@
+vim-runtime: copyright-without-copyright-notice
+vim-runtime: initial-upload-closes-no-bugs
+vim-runtime: national-encoding
+vim-runtime: zero-byte-file-in-doc-directory

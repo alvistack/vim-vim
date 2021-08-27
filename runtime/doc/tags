@@ -4263,6 +4263,7 @@ E127	eval.txt	/*E127*
 E1270	change.txt	/*E1270*
 E1271	vim9.txt	/*E1271*
 E1274	cmdline.txt	/*E1274*
+E1276	builtin.txt	/*E1276*
 E128	eval.txt	/*E128*
 E129	eval.txt	/*E129*
 E13	message.txt	/*E13*
@@ -5312,6 +5313,7 @@ Neovim	intro.txt	/*Neovim*
 NetBSD-backspace	options.txt	/*NetBSD-backspace*
 NetBeans	netbeans.txt	/*NetBeans*
 NetUserPass()	pi_netrw.txt	/*NetUserPass()*
+NoDefaultCurrentDirectoryInExePath	builtin.txt	/*NoDefaultCurrentDirectoryInExePath*
 None	eval.txt	/*None*
 Normal	intro.txt	/*Normal*
 Normal-mode	intro.txt	/*Normal-mode*
@@ -7920,6 +7922,7 @@ invert()	builtin.txt	/*invert()*
 ip	motion.txt	/*ip*
 iquote	motion.txt	/*iquote*
 is	motion.txt	/*is*
+isabsolutepath()	builtin.txt	/*isabsolutepath()*
 isdirectory()	builtin.txt	/*isdirectory()*
 isinf()	builtin.txt	/*isinf()*
 islocked()	builtin.txt	/*islocked()*

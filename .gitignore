@@ -103,3 +103,10 @@ src/cscope.out
 /.cache/clangd/
 /.ccls-cache/
 /compile_commands.json
+
+autoconf-stamp
+src/vim-basic/
+src/vim-gtk3/
+src/vim-motif/
+src/vim-nox/
+src/vim-tiny/

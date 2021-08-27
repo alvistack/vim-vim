@@ -1,0 +1,4 @@
+vim-common: copyright-without-copyright-notice
+vim-common: desktop-command-not-in-package
+vim-common: initial-upload-closes-no-bugs
+vim-common: zero-byte-file-in-doc-directory
