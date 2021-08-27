@@ -1,0 +1,89 @@
+Source: vim
+Section: editors
+Priority: optional
+Standards-Version: 4.5.0
+Maintainer: Wong Hoi Sing Edison <hswong3i@gmail.com>
+Homepage: https://github.com/vim/vim/releases
+Vcs-Browser: https://github.com/alvistack/vim-vim
+Vcs-Git: https://github.com/alvistack/vim-vim.git
+Build-Depends:
+ debhelper,
+ debhelper-compat (= 10),
+ autoconf,
+ automake,
+ clang,
+ fdupes,
+ gettext,
+ libncurses-dev,
+ libxt-dev,
+ pkg-config,
+
+Package: xxd
+Architecture: amd64
+Description: Tool to make (or reverse) a hex dump
+ xxd creates a hex dump of a given file or standard input.  It can also convert
+ a hex dump back to its original binary form.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Breaks:
+ vim-common (<< ${source:Version}),
+Replaces:
+ vim-common (<< ${source:Version}),
+
+Package: vim-common
+Priority: important
+Architecture: all
+Description: Vi IMproved - Common files
+ This package contains files shared by all non GUI-enabled vim variants
+ available in Debian.  Examples of such shared files are: manpages and
+ configuration files.
+Depends:
+ ${misc:Depends},
+ xxd,
+
+Package: vim-runtime
+Architecture: all
+Description: Vi IMproved - Runtime files
+ This package contains vimtutor and the architecture independent runtime
+ files, used, if available, by all vim variants available in Debian.
+ Example of such runtime files are: online documentation, rules for
+ language-specific syntax highlighting and indentation, color schemes,
+ and standard plugins.
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ ${perl:Depends},
+Breaks:
+ vim-tiny (<< ${source:Version}),
+
+Package: vim-tiny
+Priority: important
+Architecture: amd64
+Description: Vi IMproved - enhanced vi editor - compact version
+ This package contains a minimal version of Vim compiled with no GUI and
+ a small subset of features. This package's sole purpose is to provide
+ the vi binary for base installations.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-common (= ${source:Version}),
+Provides:
+ editor,
+
+Package: vim
+Architecture: amd64
+Description: Vi IMproved
+ Vim (Vi IMproved) is an almost compatible version of the UNIX editor vi.
+ Almost every possible command can be performed using only ASCII
+ characters. Only the 'Q' command is missing (you do not need it). Many
+ new features have been added: multilevel undo, command line history,
+ file name completion, block operations, and editing of binary data.
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ vim-tiny (= ${source:Version}),
+ vim-common (= ${source:Version}),
+ vim-runtime (= ${source:Version}),
+Provides:
+ editor,
