@@ -1905,6 +1905,10 @@ parse_command_name(mparm_T *parmp)
     }
     else if (STRNICMP(initstr, "vim", 3) == 0)
 	initstr += 3;
+#ifdef SYS_TINYRC_FILE
+    else if (STRNICMP(initstr, "vi", 2) == 0)
+	parmp->vi_mode = TRUE;
+#endif
 
     // Catch "[r][g]vimdiff" and "[r][g]viewdiff".
     if (STRICMP(initstr, "diff") == 0)
@@ -3184,7 +3188,12 @@ source_startup_scripts(mparm_T *parmp)
 	 * Get system wide defaults, if the file name is defined.
 	 */
 #ifdef SYS_VIMRC_FILE
-	(void)do_source((char_u *)SYS_VIMRC_FILE, FALSE, DOSO_NONE, NULL);
+# if defined(SYS_TINYRC_FILE) && defined(TINY_VIMRC)
+	if (parmp->vi_mode)
+	    (void)do_source((char_u *)SYS_TINYRC_FILE, FALSE, DOSO_NONE, NULL);
+	else
+# endif
+	    (void)do_source((char_u *)SYS_VIMRC_FILE, FALSE, DOSO_NONE, NULL);
 #endif
 #ifdef MACOS_X
 	(void)do_source((char_u *)"$VIMRUNTIME/macmap.vim", FALSE,
@@ -3223,6 +3232,9 @@ source_startup_scripts(mparm_T *parmp)
 #ifdef USR_EXRC_FILE2
 		&& do_source((char_u *)USR_EXRC_FILE2, FALSE,
 						       DOSO_NONE, NULL) == FAIL
+#endif
+#if defined(SYS_TINYRC_FILE) && defined(TINY_VIMRC)
+		&& !parmp->vi_mode
 #endif
 		&& !has_dash_c_arg)
 	    {

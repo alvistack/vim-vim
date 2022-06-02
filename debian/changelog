@@ -1,0 +1,5 @@
+vim (100:8.2.5048-1) UNRELEASED; urgency=medium
+
+  * https://github.com/vim/vim-win32-installer/releases/tag/v8.2.5048
+
+ -- Wong Hoi Sing Edison <hswong3i@gmail.com>  Thu, 02 Jun 2022 10:08:19 +0800

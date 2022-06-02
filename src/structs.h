@@ -4238,6 +4238,9 @@ typedef struct
 #ifdef FEAT_DIFF
     int		diff_mode;		// start with 'diff' set
 #endif
+#ifdef SYS_TINYRC_FILE
+    int		vi_mode;		/* started as "vi" */
+#endif
 } mparm_T;
 
 /*

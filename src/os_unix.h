@@ -219,6 +219,9 @@ typedef struct dsc$descriptor   DESC;
 /*
  * Unix system-dependent file names
  */
+#ifndef SYS_TINYRC_FILE
+# define SYS_TINYRC_FILE "$VIM/vimrc.tiny"
+#endif
 #ifndef SYS_VIMRC_FILE
 # define SYS_VIMRC_FILE "$VIM/vimrc"
 #endif
